@@ -11,7 +11,7 @@ describe("User-assigned grammars", () => {
 	
 	before(async () => {
 		await setup("4.7-grammar");
-		Tabs.closeAll();
+		await Tabs.closeAll();
 		await atom.packages.activatePackage("status-bar");
 		await atom.packages.activatePackage("grammar-selector");
 		await atom.packages.activatePackage("language-python");
@@ -74,7 +74,7 @@ describe("User-assigned grammars", () => {
 	
 	async function openGrammarSelector(){
 		const editor = atom.workspace.getActiveTextEditor();
-		atom.commands.dispatch(editor.getElement(), "grammar-selector:show");
+		await atom.commands.dispatch(editor.getElement(), "grammar-selector:show");
 		return condition(() => {
 			const selector = atom.workspace.getModalPanels().find(panel => {
 				const {element} = panel.item || {};

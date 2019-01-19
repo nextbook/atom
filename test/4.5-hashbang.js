@@ -53,7 +53,7 @@ describe("Interpreter directives", () => {
 	
 	after(() => {
 		FuzzyFinder.close();
-		Tabs.closeAll();
+		return Tabs.closeAll();
 	});
 	
 	beforeEach(() => TreeView.refresh());
@@ -135,7 +135,7 @@ describe("Interpreter directives", () => {
 	});
 
 
-	when("the hashbang is valid but matches nothing", () => {
+	unlessOnWindows(() => when("the hashbang is valid but matches nothing", () => {
 		it("shows the terminal-icon if the file is executable", () => {
 			TreeView.entries["unknown1"].should.have.classes(base + "terminal-icon medium-purple");
 		});
@@ -144,7 +144,7 @@ describe("Interpreter directives", () => {
 			TreeView.entries["unknown2"].should.have.classes(base + "default-icon");
 			TreeView.entries["unknown2"].should.not.have.classes("terminal-icon medium-purple");
 		});
-	});
+	}));
 	
 	
 	when("the file's hashbang is modified", () => {
@@ -170,7 +170,7 @@ describe("Interpreter directives", () => {
 			if(editor){
 				editor.revertToCheckpoint(checkpoint);
 				await editor.save();
-				atom.commands.dispatch(editor.editorElement, "core:close");
+				await atom.commands.dispatch(editor.editorElement, "core:close");
 			}
 		});
 		
@@ -205,10 +205,9 @@ describe("Interpreter directives", () => {
 	
 	when("the Fuzzy-Finder lists files which contain hashbangs", () => {
 		it("updates its icons to show the interpreter icons", async () => {
+			FuzzyFinder.close();
 			await FuzzyFinder.filter(".tho");
-			FuzzyFinder.entries["subdir/erlang.tho"]  .should.have.classes("default-icon");
-			FuzzyFinder.entries["subdir/haskell.tho"] .should.have.classes("default-icon");
-			await wait(300);
+			await wait(600);
 			FuzzyFinder.entries["subdir/erlang.tho"]  .should.not  .have.classes("default-icon");
 			FuzzyFinder.entries["subdir/haskell.tho"] .should.not  .have.classes("default-icon");
 			FuzzyFinder.entries["subdir/erlang.tho"]  .should      .have.classes("erlang-icon medium-red");

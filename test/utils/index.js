@@ -7,6 +7,7 @@ const path          = require("path");
 const {headless}    = atom.getLoadSettings();
 const {FileSystem}  = require("atom-fs");
 const Options       = require("../../lib/options.js");
+const pkgRoot       = path.join(__dirname, "..", "..");
 let tmpDir          = null;
 
 if(atom.inSpecMode()){
@@ -43,6 +44,7 @@ module.exports = {
 	getTempDir,
 	move,
 	open,
+	pkgRoot,
 	replaceText,
 	resetOptions,
 	resolvePath,
@@ -101,7 +103,7 @@ async function condition(predicate, options = {}){
 	const start = Date.now();
 	const {
 		pollRate = 100,
-		timeoutDuration = 3000,
+		timeoutDuration = 15000,
 		timeoutMessage = "Timed out waiting for condition",
 	} = options;
 	for(;;){
