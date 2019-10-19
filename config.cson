@@ -2192,6 +2192,7 @@ fileIcons:
 		match: [
 			[".graphql", "medium-pink", scope: "graphql"]
 			[".gql", "medium-purple"]
+			["graphql", "medium-pink"] // adde
 		]
 
 	Graphviz:
@@ -4358,6 +4359,7 @@ fileIcons:
 		match: [
 			[".scss", "light-pink", "scss"]
 			[".sass", "dark-pink", "sass"]
+			["styles", "dark-pink"]
 		]
 
 	SBT:
