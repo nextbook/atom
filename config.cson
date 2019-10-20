@@ -107,6 +107,11 @@ directoryIcons:
 		match: /^CVS$/
 		colour: "medium-orange"
 
+	data:
+		icon: "json"
+		match: /^data$/
+		colour: "medium-cyan"
+
 	Docker:
 		icon: "docker"
 		match: /^\.docker$/
@@ -143,6 +148,11 @@ directoryIcons:
 		icon: "gitlab"
 		match: /^\.gitlab$/
 
+	GraphQL:
+		icon: "graphql"
+		match: /^graphql$/
+		colour: "medium-pink"
+
 	Meteor:
 		icon: "meteor"
 		match: /^\.meteor$/
@@ -160,6 +170,11 @@ directoryIcons:
 	Package:
 		icon: "package"
 		match: /^\.(bundle|paket)$/i
+
+	styles:
+		icon: "sass"
+		match: /^styles$/
+		colour: "light-pink"
 
 	SVN:
 		icon: "svn"
@@ -2192,7 +2207,7 @@ fileIcons:
 		match: [
 			[".graphql", "medium-pink", scope: "graphql"]
 			[".gql", "medium-purple"]
-			["graphql", "medium-pink"] // adde
+			["graphql", "medium-pink"]
 		]
 
 	Graphviz:
@@ -2542,7 +2557,7 @@ fileIcons:
 	JavaScript:
 		icon: "js"
 		match: [
-			[/^((?!test).)*\.js/, "auto-yellow", scope: "js", alias: /^(js|node)$/i, interpreter: /^(node|iojs)$/]
+			[".js", "auto-yellow", scope: "js", alias: /^(js|node)$/i, interpreter: /^(node|iojs)$/]
 			["._js", "auto-orange"]
 			[".jsb", "auto-maroon"]
 			[".jsm", "auto-blue"]
@@ -4866,8 +4881,11 @@ fileIcons:
 
 	"Test, JavaScript":
 		icon: "test-js"
-		match: /[._-](spec|test)s?\.([_ms]?js|js[bms]|es\d*)$/i
-		colour: "auto-yellow"
+		match: [
+			[/[._-](spec|test)s?\.([_ms]?js|js[bms]|es\d*)$/i, "auto-yellow"]
+			[".test.js", "auto-yellow"]
+			[".spec.js", "auto-yellow"]
+		]
 		priority: 1.5
 
 	"Test, Perl":
